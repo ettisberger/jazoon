@@ -9,19 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
+var todos_1 = require("../services/todos");
 var TodoList = (function () {
     function TodoList() {
     }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], TodoList.prototype, "todos", void 0);
     TodoList = __decorate([
         core_1.Component({
             selector: 'todo-list',
-            template: "\n        <h1>Todo List</h1>\n    ",
-            directives: [],
-            providers: [],
-            styles: []
+            template: "\n        <ul>\n            <li *ngFor=\"#todo of todos\">{{todo.text}}</li>\n        </ul>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], TodoList);
     return TodoList;
 }());
-exports.TodoList = TodoList;
+var TodosList = (function () {
+    function TodosList(todoService) {
+        this.todoService = todoService;
+    }
+    TodosList = __decorate([
+        core_1.Component({
+            selector: 'todo-list',
+            template: "\n        <h1>Todo List</h1>\n        <todo-list [todos]=\"todoService.todos\"></todo-list>\n    ",
+            directives: [TodoList],
+            providers: [],
+            styles: []
+        }), 
+        __metadata('design:paramtypes', [todos_1.TodoService])
+    ], TodosList);
+    return TodosList;
+}());
+exports.TodosList = TodosList;

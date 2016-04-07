@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
+var todos_1 = require("../services/todos");
 var TodoDetail = (function () {
-    function TodoDetail() {
+    function TodoDetail(todoService) {
+        this.todoService = todoService;
     }
     TodoDetail = __decorate([
         core_1.Component({
@@ -20,7 +22,7 @@ var TodoDetail = (function () {
             providers: [],
             styles: []
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [todos_1.TodoService])
     ], TodoDetail);
     return TodoDetail;
 }());

@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core'
+import {TodoService} from "../services/todos";
 
 @Component({
     selector: 'todo-detail',
@@ -10,5 +11,5 @@ import {Component} from 'angular2/core'
     styles: []
 })
 export class TodoDetail {
-
+    constructor(public todoService: TodoService){}
 }
