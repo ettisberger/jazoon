@@ -10,19 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var name_component_1 = require("./name-component");
+var friends_1 = require("./friends");
 var App = (function () {
-    function App() {
+    function App(friendService) {
         this.isDisabled = false;
         this.foos = ['andy', 'gabriel', 'joachim'];
         this.myName = 'Andy';
+        this.friends = friendService.list;
     }
     App = __decorate([
         core_1.Component({
             selector: 'jazoon-app',
-            template: "\n        <h1>hello {{myName}}</h1>\n        <input type=\"text\" [(ngModel)]=\"myName\" />\n        <ul>\n            <li *ngFor=\"#foo of foos\">\n                {{foo}}\n            </li>\n        </ul>\n        <name-component [(name)]=\"myName\"></name-component>\n    ",
-            directives: [name_component_1.NameComponent]
+            template: "\n        <h1>hello {{myName}}</h1>\n        <input type=\"text\" [(ngModel)]=\"myName\" />\n        <ul>\n            <li *ngFor=\"#foo of foos\">\n                {{foo}}\n            </li>\n        </ul>\n        <name-component [(name)]=\"myName\"></name-component>\n        <ul>\n        <li *ngFor=\"#friend of friends\">{{friend}}</li>\n        </ul>\n    ",
+            directives: [name_component_1.NameComponent],
+            providers: [friends_1.FriendService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [friends_1.FriendService])
     ], App);
     return App;
 }());
