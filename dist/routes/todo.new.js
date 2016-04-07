@@ -9,15 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var FriendService = (function () {
-    function FriendService() {
-        console.log('init friend service');
-        this.list = ['andy', 'gabriel', 'joachim'];
+var TodoNew = (function () {
+    function TodoNew() {
     }
-    FriendService = __decorate([
-        core_1.Injectable(), 
+    TodoNew = __decorate([
+        core_1.Component({
+            selector: 'todo-new',
+            template: "\n        <h1>Todo New</h1>\n    ",
+            directives: [],
+            providers: [],
+            styles: []
+        }), 
         __metadata('design:paramtypes', [])
-    ], FriendService);
-    return FriendService;
+    ], TodoNew);
+    return TodoNew;
 }());
-exports.FriendService = FriendService;
+exports.TodoNew = TodoNew;

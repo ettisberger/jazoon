@@ -1,35 +1,25 @@
 import {Component} from 'angular2/core'
-import {NameComponent} from "./name-component";
-import {FriendService} from "./friends";
+import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from 'angular2/router'
+import {TodoNew, TodoDetail, TodoList} from './routes/index'
 
 @Component({
-    selector: 'jazoon-app',
+    selector: 'todo-app',
     template: `
-        <h1>hello {{myName}}</h1>
-        <input type="text" [(ngModel)]="myName" />
-        <ul>
-            <li *ngFor="#foo of foos">
-                {{foo}}
-            </li>
-        </ul>
-        <name-component [(name)]="myName"></name-component>
-        <ul>
-        <li *ngFor="#friend of friends">{{friend}}</li>
-        </ul>
+        <h1>todos</h1>
+        <div>
+            <a [routerLink]="['TodoList']">Todos</a>
+            <a [routerLink]="['TodoNew']">New Todo</a>
+        </div>
+        <router-outlet></router-outlet>
     `,
-    directives: [NameComponent],
-    providers: [FriendService]
+    directives: [ROUTER_DIRECTIVES],
+    providers: [ROUTER_PROVIDERS],
+    styles: []
 })
+@RouteConfig([
+    {name: 'TodoList', path: '/todos', component: TodoList, useAsDefault: true},
+    {name: 'TodoNew', path: '/new', component: TodoNew}
+])
 export class App {
-    myName:string;
-    isDisabled: boolean = false;
-    foos: string[];
-    friends: string[];
-
-    constructor (friendService: FriendService){
-        this.foos = ['andy', 'gabriel', 'joachim'];
-        this.myName = 'Andy';
-        this.friends = friendService.list;
-    }
 
 }

@@ -9,23 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var name_component_1 = require("./name-component");
-var friends_1 = require("./friends");
+var router_1 = require('angular2/router');
+var index_1 = require('./routes/index');
 var App = (function () {
-    function App(friendService) {
-        this.isDisabled = false;
-        this.foos = ['andy', 'gabriel', 'joachim'];
-        this.myName = 'Andy';
-        this.friends = friendService.list;
+    function App() {
     }
     App = __decorate([
         core_1.Component({
-            selector: 'jazoon-app',
-            template: "\n        <h1>hello {{myName}}</h1>\n        <input type=\"text\" [(ngModel)]=\"myName\" />\n        <ul>\n            <li *ngFor=\"#foo of foos\">\n                {{foo}}\n            </li>\n        </ul>\n        <name-component [(name)]=\"myName\"></name-component>\n        <ul>\n        <li *ngFor=\"#friend of friends\">{{friend}}</li>\n        </ul>\n    ",
-            directives: [name_component_1.NameComponent],
-            providers: [friends_1.FriendService]
-        }), 
-        __metadata('design:paramtypes', [friends_1.FriendService])
+            selector: 'todo-app',
+            template: "\n        <h1>todos</h1>\n        <div>\n            <a [routerLink]=\"['TodoList']\">Todos</a>\n            <a [routerLink]=\"['TodoNew']\">New Todo</a>\n        </div>\n        <router-outlet></router-outlet>\n    ",
+            directives: [router_1.ROUTER_DIRECTIVES],
+            providers: [router_1.ROUTER_PROVIDERS],
+            styles: []
+        }),
+        router_1.RouteConfig([
+            { name: 'TodoList', path: '/todos', component: index_1.TodoList, useAsDefault: true },
+            { name: 'TodoNew', path: '/new', component: index_1.TodoNew }
+        ]), 
+        __metadata('design:paramtypes', [])
     ], App);
     return App;
 }());
